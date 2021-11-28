@@ -1,0 +1,45 @@
+<html><head>
+<title>Test</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="utils.js"></script>
+<style>
+    p.white {
+        color: white;
+    }
+    p.bold {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<h1>Test</h1><p id="p1" class="white bold" style="background: green;">Hello World!</p>
+
+<script>
+    $(function() {
+        $('h1').after(jsutils.tag('p#p1.white.bold', {style:"background: green"}, 'Hello World!'));
+        console.assert($('#p1').get(0).outerHTML == '<p id="p1" class="white bold" style="background: green;">Hello World!</p>', "the html tag differs from expected");
+
+        let obj = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+        let obj1 = jsutils.processprops(obj, (x) => (x + 1));
+        obj1.a = 1;
+        console.assert(obj.a === obj1.a, "not cloned object should be the same");
+
+        let obj2 = jsutils.processprops(obj, (x) => (x + 1), true);
+        obj2.a = 2;
+        console.assert(obj.a !== obj2.a, "cloned object should be different");
+
+        let obj3 = jsutils.clone(obj);
+        obj3.a = 3;
+        console.assert(obj.a !== obj3.a, "cloned object should be different");
+
+        let a = Array("a", "", "c", "d", "");
+        let b = a._trim();
+        console.assert(b.length === 3, "array should have 5 elements");
+        console.assert(b.filter(x => a.includes(x)).length === 3, "all elements from the resulting array must exist in the original array")
+    })
+</script>
+</body></html>
