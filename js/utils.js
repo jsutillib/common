@@ -16,8 +16,8 @@
 
 (function(exports, document) {
     "use strict";
-    if (exports.jsutillib === undefined) {
-        exports.jsutillib = {};
+    if (exports.jsutilslib === undefined) {
+        exports.jsutilslib = {};
     }
 
     /**
@@ -138,9 +138,9 @@
         return processprops(target, objectfnc, true);
     }
 
-    exports.jsutillib.tag = tag;
-    exports.jsutillib.merge = merge;
-    exports.jsutillib.clone = clone;
-    exports.jsutillib.processprops = processprops;
+    exports.jsutilslib.tag = tag;
+    exports.jsutilslib.merge = merge;
+    exports.jsutilslib.clone = clone;
+    exports.jsutilslib.processprops = processprops;
 })(window, document);
 
