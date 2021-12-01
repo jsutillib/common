@@ -19,11 +19,11 @@
     if (exports.jsutilslib === undefined) {
         exports.jsutilslib = {};
     }
-    Array.prototype._trim = function() {
-        return this.filter(function(e) {
+    function arraytrim(array) {
+        return array.filter(function(e) {
             return `${e}`.trim() !== "";
         });
-    };
+    }
     Element.prototype._append = function(...args) {
         this.append(...args);
         return this;
@@ -53,7 +53,7 @@
         if (id !== null) {
             props.id = id;
         }
-        props.className = [ props.className, ...parts.slice(1) ]._trim().join(" ").trim();
+        props.className = arraytrim([ props.className, ...parts.slice(1) ]).join(" ").trim();
         let el = document.createElement(tag);
         for (let prop in props) {
             if (el[prop] !== undefined) {
@@ -96,6 +96,7 @@
     function clone(target, objectfnc = x => clone(x)) {
         return processprops(target, objectfnc, true);
     }
+    exports.jsutilslib.arraytrim = arraytrim;
     exports.jsutilslib.tag = tag;
     exports.jsutilslib.merge = merge;
     exports.jsutilslib.clone = clone;

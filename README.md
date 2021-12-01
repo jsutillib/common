@@ -194,13 +194,13 @@ $ defaults = {
 $ settings = jsutilslib.merge(defaults, { classdragging: "dragging" });
 ```
 
-### Array._trim
+### arraytrim
 
-Function `_trim` is appended to the prototype of class Array. This function removes the _empty elements_ from the array (those that evaluate to a string equal to "").
+This function removes the _empty elements_ from the array (those that evaluate to a string equal to "").
 
 ```javascript
 $ a = ['a', 'b', '', 'd' ]
-$ a._trim()
+$ arraytrim(a)
 ['a', 'b', 'd']
 ```
 

@@ -24,8 +24,8 @@
      * Removes those values in the array that are empty (i.e. its string value is "")
      * @returns the array with the values that are empty removed
      */
-    Array.prototype._trim = function() {
-        return this.filter(function(e) {
+    function arraytrim(array) {
+        return array.filter(function(e) {
             return `${e}`.trim() !== "";
         });
     }
@@ -79,7 +79,7 @@
             props.id = id;
         }
 
-        props.className = [ props.className, ...parts.slice(1)]._trim().join(" ").trim();
+        props.className = arraytrim([ props.className, ...parts.slice(1)]).join(" ").trim();
 
         let el = document.createElement(tag);
         for (let prop in props) {
@@ -138,6 +138,7 @@
         return processprops(target, objectfnc, true);
     }
 
+    exports.jsutilslib.arraytrim = arraytrim;
     exports.jsutilslib.tag = tag;
     exports.jsutilslib.merge = merge;
     exports.jsutilslib.clone = clone;
